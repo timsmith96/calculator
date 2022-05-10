@@ -5,39 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Calculator</title>
   </head>
   <body>
     <main>
       <div class="container">
-        <input type="text" class="calc-display" value="0" disabled="true" />
-        <div class="top controls">
+        <div class="row">
+          <input type="text" class="calc-display" value="0" disabled="true" />
+        </div>
+        <div class="row">
           <button class="clear-btn">CLEAR</button>
-          <button>DELETE</button>
+          <button class="delete-btn">DELETE</button>
         </div>
-        <div class="row-1">
-          <button class="num-btn" data-num="7">7</button>
-          <button class="num-btn" data-num="8">8</button>
-          <button class="num-btn" data-num="9">9</button>
-          <button class="btn operator" data-type="divide">÷</button>
-        </div>
-        <div class="row-2">
-          <button class="num-btn" data-num="4">4</button>
-          <button class="num-btn" data-num="5">5</button>
-          <button class="num-btn" data-num="6">6</button>
-          <button class="btn operator" data-type="multiply">x</button>
-        </div>
-        <div class="row-3">
-          <button class="num-btn" data-num="1">1</button>
-          <button class="num-btn" data-num="2">2</button>
-          <button class="num-btn" data-num="3">3</button>
-          <button class="btn operator" data-type="subtract">-</button>
-        </div>
-        <div class="row-4">
-          <button class="num-btn" data-num="0">0</button>
-          <button class="num-btn decimal-btn" data-num=".">.</button>
-          <button class="equal-btn" data-type="equals">=</button>
-          <button class="btn operator" data-type="add">+</button>
+        <div class="btns">
+          <div class="row-1 row">
+            <button class="num-btn btn" data-num="7">7</button>
+            <button class="num-btn btn" data-num="8">8</button>
+            <button class="num-btn btn" data-num="9">9</button>
+            <button class="btn operator btn" data-type="divide">÷</button>
+          </div>
+          <div class="row-2 row">
+            <button class="num-btn btn" data-num="4">4</button>
+            <button class="num-btn btn" data-num="5">5</button>
+            <button class="num-btn btn" data-num="6">6</button>
+            <button class="btn operator btn" data-type="multiply">x</button>
+          </div>
+          <div class="row-3 row">
+            <button class="num-btn btn" data-num="1">1</button>
+            <button class="num-btn btn" data-num="2">2</button>
+            <button class="num-btn btn" data-num="3">3</button>
+            <button class="btn operator btn" data-type="subtract">-</button>
+          </div>
+          <div class="row-4 row">
+            <button class="num-btn btn" data-num="0">0</button>
+            <button class="num-btn decimal-btn btn" data-num=".">.</button>
+            <button class="equal-btn btn" data-type="equals">=</button>
+            <button class="btn operator btn" data-type="add">+</button>
+          </div>
         </div>
       </div>
     </main>

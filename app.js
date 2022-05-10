@@ -1,6 +1,6 @@
 const add = (x, y) => Math.round(100 * (x + y)) / 100;
 const subtract = (x, y) => Math.round(100 * (x - y)) / 100;
-const multiply = (x, y) => Math.round(100 * (x * y)) / 100;
+const multiply = (x = 1, y) => Math.round(100 * (x * y)) / 100;
 const divide = (x, y) => {
   return y === 0 ? 'PROBLEMO!' : Math.round(100 * (x / y)) / 100;
 };
@@ -28,15 +28,21 @@ let lastPressed = '';
 
 const calculateResult = (arr) => {
   let result;
+  let num1;
+  let num2;
   let operation = arr.find((value) =>
     /(add|divide|multiply|subtract)/g.test(value)
   );
   if (operation == undefined) {
     result = Number(arr.slice(0).join(''));
   } else {
-    let num1 = Number(arr.slice(0, arr.indexOf(operation)).join(''));
-    let num2 = Number(arr.slice(arr.indexOf(operation) + 1).join(''));
-    result = obj[operation](num1, num2);
+    if (!(arr.indexOf(operation) === arr.length - 1)) {
+      num1 = Number(arr.slice(0, arr.indexOf(operation)).join(''));
+      num2 = Number(arr.slice(arr.indexOf(operation) + 1).join(''));
+      result = obj[operation](num1, num2);
+    } else {
+      result = arr[0];
+    }
   }
   updateDisplay([result]);
   masterArr = [result];
@@ -44,13 +50,20 @@ const calculateResult = (arr) => {
 };
 
 const updateDisplay = (arrayOfNum) => {
+  arrayOfNum = arrayOfNum.map((x) => {
+    if (x === 'multiply') return ' x ';
+    if (x === 'add') return ' + ';
+    if (x === 'divide') return ' ÷ ';
+    if (x === 'subtract') return ' - ';
+    return x;
+  });
   display.value = arrayOfNum.join('');
 };
 
 const clear = () => {
-  updateDisplay([0]);
   masterArr = [];
   currentNum = [];
+  updateDisplay([0]);
   decimalBtn.disabled = false;
 };
 
@@ -68,7 +81,7 @@ numberBtns.forEach((btn) => {
     let numClicked = btn.dataset.num;
     masterArr.push(numClicked);
     currentNum.push(numClicked);
-    updateDisplay(currentNum);
+    updateDisplay(masterArr);
     lastPressed = 1;
   });
 });
@@ -80,6 +93,7 @@ operators.forEach((operator) => {
     let clickedOperator = operator.dataset.type;
     masterArr.push(clickedOperator);
     lastPressed = 1;
+    updateDisplay(masterArr);
   });
 });
 
