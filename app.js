@@ -13,6 +13,7 @@ const operators = document.querySelectorAll('.operator');
 const clearBtn = document.querySelector('.clear-btn');
 const equalBtn = document.querySelector('.equal-btn');
 const decimalBtn = document.querySelector('.decimal-btn');
+const deleteBtn = document.querySelector('.delete-btn');
 
 const obj = {
   add: add,
@@ -58,6 +59,14 @@ const updateDisplay = (arrayOfNum) => {
     return x;
   });
   display.value = arrayOfNum.join('');
+};
+
+const deleteSingle = () => {
+  masterArr.pop();
+  if (masterArr.length === 0) {
+    masterArr = [0];
+  }
+  updateDisplay(masterArr);
 };
 
 const clear = () => {
@@ -108,3 +117,5 @@ decimalBtn.addEventListener('click', (e) => {
     decimalBtn.disabled = true;
   }
 });
+
+deleteBtn.addEventListener('click', deleteSingle);
