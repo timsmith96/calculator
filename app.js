@@ -14,6 +14,9 @@ const clearBtn = document.querySelector('.clear-btn');
 const equalBtn = document.querySelector('.equal-btn');
 const decimalBtn = document.querySelector('.decimal-btn');
 const deleteBtn = document.querySelector('.delete-btn');
+let numsArr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '.'];
+numsArr = numsArr.map(String);
+let operatorsArr = ['+', '-', '*', 'x', '/'];
 
 const obj = {
   add: add,
@@ -119,3 +122,45 @@ decimalBtn.addEventListener('click', (e) => {
 });
 
 deleteBtn.addEventListener('click', deleteSingle);
+
+document.addEventListener('keypress', (e) => {
+  let numClicked = e.key;
+  if (numsArr.includes(numClicked)) {
+    if (masterArr.includes('.') && e.key === '.') {
+      return false;
+    }
+    if (lastPressed === 'equals') {
+      masterArr = [];
+      currentNum = [];
+    }
+    if (masterArr.includes('.')) {
+      decimalBtn.disabled = true;
+    }
+
+    masterArr.push(numClicked);
+    currentNum.push(numClicked);
+    updateDisplay(masterArr);
+    lastPressed = 1;
+  } else if (operatorsArr.includes(numClicked)) {
+    if (numClicked === '-') clickedOperator = 'subtract';
+    if (numClicked === 'x' || numClicked === '*') clickedOperator = 'multiply';
+    if (numClicked === '/') clickedOperator = 'divide';
+    if (numClicked === '+') clickedOperator = 'add';
+    56;
+    calculateResult(masterArr);
+    currentNum = [];
+    masterArr.push(clickedOperator);
+    lastPressed = 1;
+    updateDisplay(masterArr);
+  } else if (numClicked === 'Enter' || numClicked === '=') {
+    calculateResult(masterArr);
+    currentNum = [];
+    lastPressed = 'equals';
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Backspace' || e.key === 'Delete') {
+    deleteSingle();
+  }
+});
