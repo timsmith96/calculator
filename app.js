@@ -124,6 +124,7 @@ decimalBtn.addEventListener('click', (e) => {
 deleteBtn.addEventListener('click', deleteSingle);
 
 document.addEventListener('keypress', (e) => {
+  e.preventDefault();
   let numClicked = e.key;
   if (numsArr.includes(numClicked)) {
     if (masterArr.includes('.') && e.key === '.') {
@@ -146,7 +147,6 @@ document.addEventListener('keypress', (e) => {
     if (numClicked === 'x' || numClicked === '*') clickedOperator = 'multiply';
     if (numClicked === '/') clickedOperator = 'divide';
     if (numClicked === '+') clickedOperator = 'add';
-    56;
     calculateResult(masterArr);
     currentNum = [];
     masterArr.push(clickedOperator);
@@ -161,6 +161,7 @@ document.addEventListener('keypress', (e) => {
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Backspace' || e.key === 'Delete') {
+    console.log('found the bug');
     deleteSingle();
   }
 });
