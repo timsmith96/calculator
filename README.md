@@ -1,6 +1,6 @@
 # Calculator
 
-A simple calculator, built using JavaScript.
+A simple calculator, built using JavaScript, CSS and HTML
 
 ## Features
 
